@@ -9,7 +9,7 @@ local spnvl = spn(16,kgenShift,sboxaufg,4,transvl,3)
 local kspnvl = hexStringToBitArray("4AA4")
 local xspnvl = hexStringToBitArray("26B7")
 
-file = io.open("encrypted.txt", "w")
+file = io.open("keys.txt", "w")
 local i=0
 for j=0,65536 do
   for k=36873,65536 do
@@ -22,9 +22,9 @@ for j=0,65536 do
        x_star=bitArrayToHexString(x_star)
        file:write(x , ',' , x_star , ',' , y , ',' , y_star,'\n')
        i=i+1
-       if (i > 100) then
-         break
-       end
      end
+   end
+   if (i >= 100) then
+     break
    end
  end

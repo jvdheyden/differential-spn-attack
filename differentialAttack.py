@@ -36,7 +36,7 @@ def differentialAttack(pairs,permutation_table):
     # select key with highest absolute bias
     for a in range(0,16):
         for b in range(0,16):
-            count[a,b] = abs(count[a,b] - 8)
+            count[a,b] = abs(count[a,b] - 50)
             if count[a,b] > max_num:
                 max_num = count[a,b]
                 max_key = (a,b)
@@ -48,7 +48,7 @@ def main():
 
     # preparing pairs of plaintext, cryptotext
     pairs = []
-    with open('encrypted.txt','r') as f:
+    with open('keys.txt','r') as f:
         data = f.read().splitlines()
         for i in data:
             pair_tuple = i.split(',')
