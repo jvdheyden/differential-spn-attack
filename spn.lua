@@ -9,11 +9,10 @@ local spnvl = spn(16,kgenShift,sboxaufg,4,transvl,3)
 local kspnvl = hexStringToBitArray("4AA4")
 local xspnvl = hexStringToBitArray("26B7")
 
---print(bitArrayToHexString(spnvl(kspnvl,xspnvl)))
 file = io.open("encrypted.txt", "w")
 local i=0
 for j=0,65536 do
-  for k=0,65536 do
+  for k=36873,65536 do
      if (j ~ k == 36873) then
        x=intToBitArray(j,16)
        x_star=intToBitArray(k,16)
