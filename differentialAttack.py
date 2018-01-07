@@ -9,7 +9,7 @@ def differentialAttack(pairs,permutation_table):
         y_star_fourth_block = y_star & 15
         # we are using y-differential from excercise 41
         # u4' = 0001 0001 0000 0000
-        # filtering: check if y_third_block and y_fourth_block are 0
+        # filtering: check if y'(3) and y'(4) are 0
         if (y_third_block == y_star_third_block and 
                 y_fourth_block == y_star_fourth_block):
             for a in range(0,16):
