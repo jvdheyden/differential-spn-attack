@@ -13,6 +13,8 @@ file = io.open("keys.txt", "w")
 local i=0
 for j=0,65536 do
   for k=0,65536 do
+    --we are using the x-differential from excercise 41
+    -- x' = int(1001 0000 0000 1001,2) == 36873
      if ((j ~ k) == 36873) then
        x=intToBitArray(j,16)
        x_star=intToBitArray(k,16)

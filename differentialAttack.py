@@ -2,14 +2,14 @@ def differentialAttack(pairs,permutation_table):
     # generate all possible keys
     l = [(a,b) for a in range(0,16) for b in range(0,16)]
     count = dict.fromkeys(l,0)
-    # go through all plaintext/cryptotext pairs and generate linear
-    # approximation table
     for (x,x_star,y,y_star) in pairs:
         y_third_block = (y >> 5) & 15
         y_fourth_block = y & 15
         y_star_third_block = (y_star >> 5) & 15
         y_star_fourth_block = y_star & 15
-        # check if y_third_block and y_fourth_block are 0
+        # we are using y-differential from excercise 41
+        # u4' = 0001 0001 0000 0000
+        # filtering: check if y_third_block and y_fourth_block are 0
         if (y_third_block == y_star_third_block and 
                 y_fourth_block == y_star_fourth_block):
             for a in range(0,16):
