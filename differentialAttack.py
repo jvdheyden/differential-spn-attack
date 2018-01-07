@@ -44,7 +44,7 @@ def differentialAttack(pairs,permutation_table):
      
 
 def main():
-    permutation_table = [8,4,2,1,12,6,3,13,10,5,14,7,15,11,9,0]
+    permutation_table = [14,2,1,3,13,9,0,6,15,4,5,10,8,12,7,11]
 
     # preparing pairs of plaintext, cryptotext
     pairs = []
