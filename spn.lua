@@ -12,7 +12,7 @@ local xspnvl = hexStringToBitArray("26B7")
 file = io.open("keys.txt", "w")
 local i=0
 for j=0,65536 do
-  for k=36873,65536 do
+  for k=0,65536 do
      if (j ~ k == 36873) then
        x=intToBitArray(j,16)
        x_star=intToBitArray(k,16)
@@ -24,7 +24,9 @@ for j=0,65536 do
        i=i+1
      end
    end
-   if (i >= 100) then
+   --[[
+   if (i >= 1000) then
      break
    end
+   --]]
  end

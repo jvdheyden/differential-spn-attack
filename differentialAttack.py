@@ -4,24 +4,24 @@ def differentialAttack(pairs,permutation_table):
     count = dict.fromkeys(l,0)
     # go through all plaintext/cryptotext pairs and generate linear
     # approximation table
-    for (x,y,x_star,y_star) in pairs:
-        y_third_block = (y >> 4) & 15
+    for (x,x_star,y,y_star) in pairs:
+        y_third_block = (y >> 5) & 15
         y_fourth_block = y & 15
-        y_star_third_block = (y_star >> 4) & 15
+        y_star_third_block = (y_star >> 5) & 15
         y_star_fourth_block = y_star & 15
         # check if y_third_block and y_fourth_block are 0
         if (y_third_block == y_star_third_block and 
                 y_fourth_block == y_star_fourth_block):
             for a in range(0,16):
                 for b in range(0,16):
-                    y_first_block = (y  >> 12)
-                    y_second_block = (y >> 8) & 15
+                    y_first_block = (y  >> 13)
+                    y_second_block = (y >> 9) & 15
                     v4_first_block = a ^ y_first_block
                     v4_second_block = b ^ y_second_block
                     u4_first_block = permutation_table.index(v4_first_block)
                     u4_second_block = permutation_table.index(v4_second_block)
-                    y_star_first_block = (y_star  >> 12)
-                    y_star_second_block = (y_star >> 8) & 15
+                    y_star_first_block = (y_star  >> 13)
+                    y_star_second_block = (y_star >> 9) & 15
                     v4_star_first_block = a ^ y_star_first_block
                     v4_star_second_block = b ^ y_star_second_block
                     u4_star_first_block = permutation_table.index(
@@ -36,9 +36,9 @@ def differentialAttack(pairs,permutation_table):
     # select key with highest absolute bias
     for a in range(0,16):
         for b in range(0,16):
-            count[a,b] = abs(count[a,b] - 50)
-            if count[a,b] > max_num:
-                max_num = count[a,b]
+            print count[(a,b)]
+            if count[(a,b)] > max_num:
+                max_num = count[(a,b)]
                 max_key = (a,b)
     return max_key
      
