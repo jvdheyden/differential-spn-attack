@@ -30,7 +30,7 @@ def differentialAttack(pairs,permutation_table):
                             v4_star_second_block)
                     u4_xor_first_block = u4_first_block ^ u4_star_first_block
                     u4_xor_second_block = u4_second_block ^ u4_star_second_block
-                    if (u4_xor_first_block == 1 and u4_xor_second_block == 1):
+                    if ((u4_xor_first_block == 1) and (u4_xor_second_block == 1)):
                         count[(a,b)] += 1
     max_num = -1
     # select key with highest absolute bias

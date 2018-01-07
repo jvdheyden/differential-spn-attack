@@ -13,11 +13,11 @@ file = io.open("keys.txt", "w")
 local i=0
 for j=0,65536 do
   for k=0,65536 do
-     if (j ~ k == 36873) then
+     if ((j ~ k) == 36873) then
        x=intToBitArray(j,16)
        x_star=intToBitArray(k,16)
-       y=bitArrayToHexString(spnvl(kspnvl,x))
-       y_star=bitArrayToHexString(spnvl(kspnvl,x_star))
+       y=bitArrayToHexString(spnvl(xspnvl,x))
+       y_star=bitArrayToHexString(spnvl(xspnvl,x_star))
        x=bitArrayToHexString(x)
        x_star=bitArrayToHexString(x_star)
        file:write(x , ',' , x_star , ',' , y , ',' , y_star,'\n')
