@@ -3,25 +3,24 @@ def differentialAttack(pairs,permutation_table):
     l = [(a,b) for a in range(0,16) for b in range(0,16)]
     count = dict.fromkeys(l,0)
     for (x,x_star,y,y_star) in pairs:
-        y_third_block = (y >> 5) & 15
+        y_third_block = (y >> 4) & 15
         y_fourth_block = y & 15
-        y_star_third_block = (y_star >> 5) & 15
+        y_star_third_block = (y_star >> 4) & 15
         y_star_fourth_block = y_star & 15
         # we are using y-differential from excercise 41
         # u4' = 0001 0001 0000 0000
         # filtering: check if y'(3) and y'(4) are 0
-        if (y_third_block == y_star_third_block and 
-                y_fourth_block == y_star_fourth_block):
+        if (y_third_block == y_star_third_block and y_fourth_block == y_star_fourth_block):
+            y_first_block = (y  >> 12)
+            y_second_block = (y >> 8) & 15
+            y_star_first_block = (y_star  >> 12)
+            y_star_second_block = (y_star >> 8) & 15
             for a in range(0,16):
                 for b in range(0,16):
-                    y_first_block = (y  >> 13)
-                    y_second_block = (y >> 9) & 15
                     v4_first_block = a ^ y_first_block
                     v4_second_block = b ^ y_second_block
                     u4_first_block = permutation_table.index(v4_first_block)
                     u4_second_block = permutation_table.index(v4_second_block)
-                    y_star_first_block = (y_star  >> 13)
-                    y_star_second_block = (y_star >> 9) & 15
                     v4_star_first_block = a ^ y_star_first_block
                     v4_star_second_block = b ^ y_star_second_block
                     u4_star_first_block = permutation_table.index(
@@ -36,12 +35,13 @@ def differentialAttack(pairs,permutation_table):
     # select key with highest absolute bias
     for a in range(0,16):
         for b in range(0,16):
-            print count[(a,b)]
+            # print (count[(a,b)])
             if count[(a,b)] > max_num:
                 max_num = count[(a,b)]
                 max_key = (a,b)
+    #print(max_num)
     return max_key
-     
+
 
 def main():
     permutation_table = [14,2,1,3,13,9,0,6,15,4,5,10,8,12,7,11]
