@@ -48,7 +48,7 @@ def main():
 
     # preparing pairs of plaintext, cryptotext
     pairs = []
-    with open('keys.txt','r') as f:
+    with open('spn/keys.txt','r') as f:
         data = f.read().splitlines()
         for i in data:
             pair_tuple = i.split(',')
