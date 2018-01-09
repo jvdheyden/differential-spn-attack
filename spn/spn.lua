@@ -26,9 +26,7 @@ for j=0,65536 do
        i=i+1
      end
    end
-   --[[
-   if (i >= 1000) then
+   if (i >= 1700) then
      break
    end
-   --]]
  end
