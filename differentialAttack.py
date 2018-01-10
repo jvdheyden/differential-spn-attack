@@ -2,6 +2,9 @@ def differentialAttack(pairs,permutation_table):
     # generate all possible keys
     l = [(a,b) for a in range(0,16) for b in range(0,16)]
     count = dict.fromkeys(l,0)
+    t = 0 #to test how many pairs are needed.
+    i = 0 #number of pairs which gives us a key.
+    N = 0.1 #accuracy of the max_key
     for (x,x_star,y,y_star) in pairs:
         y_third_block = (y >> 4) & 15
         y_fourth_block = y & 15
@@ -31,15 +34,30 @@ def differentialAttack(pairs,permutation_table):
                     u4_xor_second_block = u4_second_block ^ u4_star_second_block
                     if ((u4_xor_first_block == 1) and (u4_xor_second_block == 1)):
                         count[(a,b)] += 1
+                        i+=1
+        t+=1 #test if the distance between the two keys (a,b) and (a',b') with the highest count value is higher than N. Do this for all 100 pairs.
+        if t % 100 == 0:
+            max_num = -1
+            max_num_prev = -1
+            for a in range(0,16):
+                for b in range(0,16):
+                    if count[(a,b)] > max_num:
+                        max_num_prev = max_num
+                        max_num = count[(a,b)]
+                        max_key = (a,b)
+            #if(max_num - max_num_prev > 0.1 * t):
+            if(max_num > N * i):
+                print (max_num)
+                print (max_num_prev)
+                print(t)
+                return max_key
     max_num = -1
     # select key with highest absolute bias
     for a in range(0,16):
         for b in range(0,16):
-            # print (count[(a,b)])
             if count[(a,b)] > max_num:
                 max_num = count[(a,b)]
                 max_key = (a,b)
-    #print(max_num)
     return max_key
 
 
