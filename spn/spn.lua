@@ -10,9 +10,9 @@ local kspnvl = hexStringToBitArray("4AA4")
 local xspnvl = hexStringToBitArray("26B7")
 
 file = io.open("keys.txt", "w")
-local i=0
+local i=1
 local keys = {}
-while i <= 1700 do
+while i <= 1000 do
   j = math.random(0,65535)
   k = math.random(0,65535)
   --we are using the x-differential from excercise 41

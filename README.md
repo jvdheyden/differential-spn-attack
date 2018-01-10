@@ -7,4 +7,4 @@ benötigten Doppelpaare herausfinden.
 
 Die Doppelpaare von Schlüsseln können durch Ausführung von `lua5.3 spn/spn.lua` generiert werden.
 
-Der Angriff wird gestartet durch Ausführung von differentialAttack.py. Die Anzahl der benötigten Doppelpaare t beträgt ca. 1700.
+Der Angriff wird gestartet durch Ausführung von differentialAttack.py. Die Anzahl der benötigten Doppelpaare t beträgt bei uns genau 748.
