@@ -50,10 +50,10 @@ def main():
     pairs = []
     with open('spn/keys.txt','r') as f:
         data = f.read().splitlines()
-        for i in data:
-            pair_tuple = i.split(',')
-            pairs.append((int(pair_tuple[0],16),int(pair_tuple[1],16),
-                int(pair_tuple[2],16), int(pair_tuple[3],16)))
+    for i in data:
+        pair_tuple = i.split(',')
+        pairs.append((int(pair_tuple[0],16),int(pair_tuple[1],16),
+            int(pair_tuple[2],16), int(pair_tuple[3],16)))
 
     print(differentialAttack(pairs, permutation_table))
 
